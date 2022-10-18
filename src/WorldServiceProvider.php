@@ -4,7 +4,6 @@ namespace Brnysn\World;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Brnysn\World\Commands\WorldCommand;
 
 class WorldServiceProvider extends PackageServiceProvider
 {
@@ -17,9 +16,6 @@ class WorldServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-world')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-world_table')
-            ->hasCommand(WorldCommand::class);
+            ->hasMigration('create_laravel-world_table');
     }
 }

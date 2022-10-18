@@ -8,12 +8,45 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('laravel_world_table', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->id();
-
-            // add fields
-
-            $table->timestamps();
+            $table->string('name');
+            $table->string('iso3', 10)->nullable();
+            $table->string('iso2', 10)->nullable();
+            $table->unsignedSmallInteger('numeric_code')->nullable();
+            $table->string('phone_code', 50)->nullable();
+            $table->string('capital')->nullable();
+            $table->string('currency', 10)->nullable();
+            $table->string('native')->nullable();
+            $table->string('region')->nullable();
+            $table->string('latitude', 50)->nullable();
+            $table->string('longitude', 50)->nullable();
+            $table->string('emoji', 10)->nullable();
         });
+
+        Schema::create('states', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('latitude', 50)->nullable();
+            $table->string('longitude', 50)->nullable();
+
+            $table->foreignId('country_id')->constrained('countries');
+        });
+
+        Schema::create('cities', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('latitude', 50)->nullable();
+            $table->string('longitude', 50)->nullable();
+
+            $table->foreignId('state_id')->constrained('states');
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('cities');
+        Schema::dropIfExists('states');
+        Schema::dropIfExists('countries');
     }
 };
