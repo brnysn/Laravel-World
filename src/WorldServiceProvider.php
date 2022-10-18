@@ -2,7 +2,6 @@
 
 namespace Brnysn\World;
 
-use Brnysn\World\Commands\WorldCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
