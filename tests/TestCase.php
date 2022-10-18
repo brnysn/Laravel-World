@@ -2,9 +2,9 @@
 
 namespace Brnysn\World\Tests;
 
+use Brnysn\World\WorldServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Brnysn\World\WorldServiceProvider;
 
 class TestCase extends Orchestra
 {
