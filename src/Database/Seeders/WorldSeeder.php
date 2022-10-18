@@ -4,7 +4,7 @@ namespace Brnysn\World\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class AddressSeeder extends Seeder
+class WorldSeeder extends Seeder
 {
     public function run()
     {

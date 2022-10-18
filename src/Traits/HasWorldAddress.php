@@ -6,7 +6,7 @@ use Brnysn\World\Models\City;
 use Brnysn\World\Models\Country;
 use Brnysn\World\Models\State;
 
-trait HasAddress
+trait HasWorldAddress
 {
     /**
      * Relationships
