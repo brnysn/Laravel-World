@@ -18,6 +18,8 @@ class WorldSeeder extends Seeder
 
     protected function seedCountries()
     {
+        $this->command->info('Seeding Countries');
+
         $csvFile = fopen(__DIR__.'/countries.csv', 'r');
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
@@ -47,10 +49,14 @@ class WorldSeeder extends Seeder
             $firstline = false;
         }
         fclose($csvFile);
+
+        $this->command->info('👍 Countries Seeded Successfully');
     }
 
     protected function seedStates()
     {
+        $this->command->info('Seeding States');
+
         $csvFile = fopen(__DIR__.'/states.csv', 'r');
 
         $firstline = true;
@@ -71,10 +77,14 @@ class WorldSeeder extends Seeder
             $firstline = false;
         }
         fclose($csvFile);
+
+        $this->command->info('👍 States Seeded Successfully');
     }
 
     protected function seedCities()
     {
+        $this->command->info('Seeding Cities');
+
         $csvFile = fopen(__DIR__.'/cities.csv', 'r');
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
@@ -96,5 +106,7 @@ class WorldSeeder extends Seeder
             $firstline = false;
         }
         fclose($csvFile);
+
+        $this->command->info('👍 Cities Seeded Successfully');
     }
 }
