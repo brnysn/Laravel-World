@@ -16,21 +16,21 @@ class WorldSeeder extends Seeder
 
     protected function seedCountries()
     {
-        $sql = resource_path('/Database/seeders/countries.sql');
+        $sql = resource_path('Brnysn/World/Database/Seeders/countries.sql');
 
         DB::unprepared(file_get_contents($sql));
     }
 
     protected function seedStates()
     {
-        $sql = resource_path('/Database/seeders/states.sql');
+        $sql = resource_path('Brnysn/World/Database/Seeders/states.sql');
 
         DB::unprepared(file_get_contents($sql));
     }
 
     protected function seedCities()
     {
-        $sql = resource_path('/Database/seeders/cities.sql');
+        $sql = resource_path('Brnysn/World/Database/Seeders/cities.sql');
 
         DB::unprepared(file_get_contents($sql));
     }
