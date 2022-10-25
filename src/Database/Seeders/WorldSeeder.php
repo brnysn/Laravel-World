@@ -18,20 +18,20 @@ class WorldSeeder extends Seeder
     {
         $sql = file_get_contents(__DIR__.'/countries.sql');
 
-        DB::unprepared(file_get_contents($sql));
+        DB::unprepared($sql);
     }
 
     protected function seedStates()
     {
         $sql = file_get_contents(__DIR__.'/states.sql');
 
-        DB::unprepared(file_get_contents($sql));
+        DB::unprepared($sql);
     }
 
     protected function seedCities()
     {
         $sql = file_get_contents(__DIR__.'/cities.sql');
 
-        DB::unprepared(file_get_contents($sql));
+        DB::unprepared($sql);
     }
 }
