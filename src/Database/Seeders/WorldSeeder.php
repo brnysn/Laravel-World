@@ -2,7 +2,7 @@
 
 namespace Brnysn\World\Database\Seeders;
 
-use Illimunate\Support\Facades\DB;
+use \DB;
 use Illuminate\Database\Seeder;
 
 class WorldSeeder extends Seeder
