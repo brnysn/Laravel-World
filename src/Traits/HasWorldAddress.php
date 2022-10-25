@@ -47,31 +47,35 @@ trait HasWorldAddress
     /**
      * Methods
      */
-    public function changeCountry(Country $country) : self
+    public function changeCountry(Country $country): self
     {
         $this->updateQuietly(['country_id' => $country->id]);
+
         return $this;
     }
 
-    public function changeState(State $state) : self
+    public function changeState(State $state): self
     {
         $this->updateQuietly(['state_id' => $state->id]);
+
         return $this;
     }
 
-    public function changeCity(City $city) : self
+    public function changeCity(City $city): self
     {
         $this->updateQuietly(['city_id' => $city->id]);
+
         return $this;
     }
 
-    public function changeAddress($address) : self
+    public function changeAddress($address): self
     {
         $this->updateQuietly([
             'country_id' => $address->country_id,
             'state_id' => $address->state_id,
             'city_id' => $address->city_id,
         ]);
+
         return $this;
     }
 }

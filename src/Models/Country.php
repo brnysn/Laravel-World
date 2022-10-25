@@ -34,14 +34,13 @@ class Country extends Model
 
     protected $hidden = [];
 
-    public function states() : \Illuminate\Database\Eloquent\Relations\HasMany
+    public function states(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(State::class);
     }
 
-    public function cities() : \Illuminate\Database\Eloquent\Relations\HasMany
+    public function cities(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(City::class);
     }
-
 }

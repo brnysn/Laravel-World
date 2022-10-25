@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $latitude
  * @property string $longitude
  * @property string $wikiDataId
- *
  * @property string $state_id
  * @property string $country_id
  */
@@ -26,12 +25,12 @@ class City extends Model
 
     protected $hidden = [];
 
-    public function state() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function state(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(State::class);
     }
 
-    public function country() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function country(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Country::class);
     }
