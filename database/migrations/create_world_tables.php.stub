@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('iso3', 10)->nullable();
             $table->string('iso2', 10)->nullable();
             $table->unsignedSmallInteger('numeric_code')->nullable();
-            $table->string('phone_code', 15)->nullable();
+            $table->string('phone_code', 50)->nullable();
             $table->string('capital')->nullable();
             $table->string('currency', 10)->nullable();
             $table->string('currency_name')->nullable();
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('native')->nullable();
             $table->string('region')->nullable();
             $table->string('subregion')->nullable();
-            $table->json('timezones')->nullable();
-            $table->json('translations')->nullable();
+            $table->text('timezones')->nullable();
+            $table->text('translations')->nullable();
             $table->string('latitude', 20)->nullable();
             $table->string('longitude', 20)->nullable();
             $table->string('emoji', 10)->nullable();
