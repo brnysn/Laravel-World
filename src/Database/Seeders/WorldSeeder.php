@@ -2,54 +2,36 @@
 
 namespace Brnysn\World\Database\Seeders;
 
-use Brnysn\World\Models\City;
-use Brnysn\World\Models\Country;
-use Brnysn\World\Models\State;
+use Illimunate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\File;
 
 class WorldSeeder extends Seeder
 {
     public function run()
     {
-        $this->seedCountriesFromJson();
-        $this->seedStatesFromJson();
-        $this->seedCitiesFromJson();
+        $this->seedCountries();
+        $this->seedStates();
+        $this->seedCities();
     }
 
-    protected function seedCountriesFromJson()
+    protected function seedCountries()
     {
-        Country::truncate();
+        $sql = resource_path('/Database/seeders/countries.sql');
 
-        $json = File::get("database/seeders/countries.json");
-        $countries = json_decode($json);
-
-        foreach ($countries as $key => $value) {
-            Country::create($value);
-        }
+        DB::unprepared(file_get_contents($sql));
     }
 
-    protected function seedStatesFromJson()
+    protected function seedStates()
     {
-        State::truncate();
+        $sql = resource_path('/Database/seeders/states.sql');
 
-        $json = File::get("database/seeders/states.json");
-        $states = json_decode($json);
-
-        foreach ($states as $key => $value) {
-            State::create($value);
-        }
+        DB::unprepared(file_get_contents($sql));
     }
 
-    protected function seedCitiesFromJson()
+    protected function seedCities()
     {
-        City::truncate();
+        $sql = resource_path('/Database/seeders/cities.sql');
 
-        $json = File::get("database/seeders/cities.json");
-        $cities = json_decode($json);
-
-        foreach ($cities as $key => $value) {
-            City::create($value);
-        }
+        DB::unprepared(file_get_contents($sql));
     }
 }
