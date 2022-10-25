@@ -49,25 +49,19 @@ trait HasWorldAddress
      */
     public function changeCountry(Country $country) : self
     {
-        $this->updateQuietly([
-            'country_id' => $country->id,
-        ]);
+        $this->updateQuietly(['country_id' => $country->id]);
         return $this;
     }
 
     public function changeState(State $state) : self
     {
-        $this->updateQuietly([
-            'state_id' => $state->id,
-        ]);
+        $this->updateQuietly(['state_id' => $state->id]);
         return $this;
     }
 
     public function changeCity(City $city) : self
     {
-        $this->updateQuietly([
-            'city_id' => $city->id,
-        ]);
+        $this->updateQuietly(['city_id' => $city->id]);
         return $this;
     }
 

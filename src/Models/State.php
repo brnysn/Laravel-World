@@ -5,11 +5,16 @@ namespace Brnysn\World\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property mixed  $id
+ * @property mixed $id
  * @property string $name
+ * @property string $country_code
+ * @property string $country_name
+ * @property string $state_code
+ * @property string $type
  * @property string $latitude
  * @property string $longitude
- * @property string $city_id
+ *
+ * @property string $country_id
  */
 class State extends Model
 {
@@ -28,6 +33,4 @@ class State extends Model
     {
         return $this->belongsTo(Country::class);
     }
-
-
 }
