@@ -18,7 +18,7 @@ class WorldSeeder extends Seeder
 
     protected function seedCountries()
     {
-        $csvFile = fopen(__DIR__.'/countries.sql', 'r');
+        $csvFile = fopen(__DIR__.'/countries.csv', 'r');
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
             if (! $firstline) {
@@ -51,7 +51,7 @@ class WorldSeeder extends Seeder
 
     protected function seedStates()
     {
-        $csvFile = fopen(__DIR__.'/states.sql', 'r');
+        $csvFile = fopen(__DIR__.'/states.csv', 'r');
 
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
@@ -75,7 +75,7 @@ class WorldSeeder extends Seeder
 
     protected function seedCities()
     {
-        $csvFile = fopen(__DIR__.'/cities.sql', 'r');
+        $csvFile = fopen(__DIR__.'/cities.csv', 'r');
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
             if (! $firstline) {
