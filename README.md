@@ -6,21 +6,24 @@
 
 The simplest way to add country, state and city to Laravel application.
 
+Data is taken from [dr5hn/countries-states-cities-database](https://github.com/dr5hn/countries-states-cities-database). Thanks to [dr5hn](https://github.com/dr5hn/) for the great work. 
+
+Data is last updated on 2022-10-26.
+
 ## Installation
 
-You can install the package via composer:
+Install the package via composer:
 
 ```bash
 composer require brnysn/laravel-world
 ```
 
-You can publish and run the migrations with:
+Publish and run the migrations with:
 
 ```bash
 php artisan vendor:publish --tag="world-migrations"
 php artisan migrate
 ```
-
 
 After the migration has been published you can add the countries, states and cities to your database by running:
 
@@ -28,7 +31,9 @@ After the migration has been published you can add the countries, states and cit
 php artisan db:seed --class="Brnysn\\World\\Database\\Seeders\\WorldSeeder"
 ```
 
-Add `HasWorldAddress` trait to your models:
+Seeding the database will take a while.
+
+Add `HasWorldAddress` trait to your models to add the country, state and city relationship:
 
 ```php
 use Brnysn\World\Traits\HasWorldAddress;
@@ -42,6 +47,35 @@ class {class_name} extends Model
 ## Usage
 
 ```php
+use Brnysn\World\Models\Country;
+use Brnysn\World\Models\State;
+use Brnysn\World\Models\City;
+
+// Get Data
+$country = Country::find(1);
+$state = State::find(1);
+$city = City::find(1);
+
+// Get Relationship
+$country->states;
+$state->cities;
+$city->state;
+$city->country;
+
+// Query
+$country->states()->where('name', 'like', '%state%')->get();
+$state->cities()->where('name', 'like', '%city%')->get();
+
+// Set Address of a model with HasWorldAddress trait
+$model->changeCountry($country);
+$model->changeState($state);
+$model->changeCity($city);
+$model->changeAddress($country, $state, $city);
+
+// Get details of address of a model with HasWorldAddress trait
+$model->country->name;
+$model->state->name;
+
 ```
 
 ## Changelog

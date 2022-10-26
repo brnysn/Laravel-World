@@ -68,12 +68,12 @@ trait HasWorldAddress
         return $this;
     }
 
-    public function changeAddress($address): self
+    public function changeAddress(Country $country, State $state, City $city): self
     {
         $this->updateQuietly([
-            'country_id' => $address->country_id,
-            'state_id' => $address->state_id,
-            'city_id' => $address->city_id,
+            'country_id' => $country->id,
+            'state_id' => $state->id,
+            'city_id' => $city->id,
         ]);
 
         return $this;
