@@ -47,11 +47,11 @@ class {class_name} extends Model
 ## Usage
 
 ```php
+// Get Data
 use Brnysn\World\Models\Country;
 use Brnysn\World\Models\State;
 use Brnysn\World\Models\City;
 
-// Get Data
 $country = Country::find(1);
 $state = State::find(1);
 $city = City::find(1);

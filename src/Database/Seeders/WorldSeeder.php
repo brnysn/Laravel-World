@@ -6,6 +6,7 @@ use Brnysn\World\Models\City;
 use Brnysn\World\Models\Country;
 use Brnysn\World\Models\State;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class WorldSeeder extends Seeder
 {
@@ -27,6 +28,7 @@ class WorldSeeder extends Seeder
                 Country::insert([
                     'id' => $data[0],
                     'name' => $data[1],
+                    'slug' => Str::slug($data[1]),
                     'iso3' => $data[2],
                     'iso2' => $data[3],
                     'numeric_code' => $data[4],
@@ -65,6 +67,7 @@ class WorldSeeder extends Seeder
                 State::insert([
                     'id' => $data[0],
                     'name' => $data[1],
+                    'slug' => Str::slug($data[1]),
                     'country_id' => $data[2],
                     'country_code' => $data[3],
                     'country_name' => $data[4],
@@ -92,6 +95,7 @@ class WorldSeeder extends Seeder
                 City::insert([
                     'id' => $data[0],
                     'name' => $data[1],
+                    'slug' => Str::slug($data[1]),
                     'state_id' => $data[2],
                     'state_code' => $data[3],
                     'state_name' => $data[4],
