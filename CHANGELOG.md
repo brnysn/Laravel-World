@@ -2,6 +2,10 @@
 
 All notable changes to `Laravel-World` will be documented in this file.
 
+## 1.1.0 - 2022-11-26
+
+Slugs added to models
+
 ## 1.0.0. - 2022-10-26
 
 The package is ready to use. Check Readme.md
