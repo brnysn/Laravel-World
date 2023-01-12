@@ -34,6 +34,15 @@ class Country extends Model
 
     protected $hidden = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('orderByName', function ($query) {
+            $query->orderBy('name');
+        });
+    }
+
     public function states(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(State::class);

@@ -25,6 +25,15 @@ class City extends Model
 
     protected $hidden = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('orderByName', function ($query) {
+            $query->orderBy('name');
+        });
+    }
+
     public function state(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(State::class);
