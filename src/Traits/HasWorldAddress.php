@@ -5,23 +5,24 @@ namespace Brnysn\World\Traits;
 use Brnysn\World\Models\City;
 use Brnysn\World\Models\Country;
 use Brnysn\World\Models\State;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait HasWorldAddress
 {
     /**
      * Relationships
      */
-    public function country()
+    public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
     }
 
-    public function state()
+    public function state(): BelongsTo
     {
         return $this->belongsTo(State::class);
     }
 
-    public function city()
+    public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
     }

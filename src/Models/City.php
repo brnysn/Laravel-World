@@ -3,6 +3,7 @@
 namespace Brnysn\World\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property mixed $id
@@ -25,7 +26,7 @@ class City extends Model
 
     protected $hidden = [];
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 
@@ -34,12 +35,12 @@ class City extends Model
         });
     }
 
-    public function state(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function state(): BelongsTo
     {
         return $this->belongsTo(State::class);
     }
 
-    public function country(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
     }
