@@ -18,6 +18,20 @@ Install the package via composer:
 composer require brnysn/laravel-world
 ```
 
+Publish the config file with:
+
+```bash
+php artisan vendor:publish --tag="world-config"
+```
+
+Define whether to use uuid or id in the config file: Migrations will be created according to this setting.
+
+```php
+return [
+    'use_uuid' => false,
+];
+```
+
 Publish and run the migrations with:
 
 ```bash

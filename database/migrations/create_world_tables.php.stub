@@ -6,10 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->id();
+            if (config('world.use_uuid')) {
+                $table->uuid('id')->primary();
+            } else {
+                $table->id();
+            }
+
             $table->string('name');
             $table->string('slug');
             $table->string('iso3', 10)->nullable();
@@ -25,7 +33,6 @@ return new class extends Migration
             $table->string('region')->nullable();
             $table->string('subregion')->nullable();
             $table->text('timezones')->nullable();
-            $table->text('translations')->nullable();
             $table->string('latitude', 20)->nullable();
             $table->string('longitude', 20)->nullable();
             $table->string('emoji', 10)->nullable();
@@ -33,7 +40,12 @@ return new class extends Migration
         });
 
         Schema::create('states', function (Blueprint $table) {
-            $table->id();
+            if (config('world.use_uuid')) {
+                $table->uuid('id')->primary();
+            } else {
+                $table->id();
+            }
+
             $table->string('name');
             $table->string('slug');
             $table->string('country_code', 10)->nullable();
@@ -43,11 +55,20 @@ return new class extends Migration
             $table->string('latitude', 20)->nullable();
             $table->string('longitude', 20)->nullable();
 
-            $table->foreignId('country_id')->constrained('countries');
+            if (config('world.use_uuid')) {
+                $table->foreignUuid('country_id')->constrained('countries')->cascadeOnDelete()->cascadeOnUpdate();
+            } else {
+                $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete()->cascadeOnUpdate();
+            }
         });
 
         Schema::create('cities', function (Blueprint $table) {
-            $table->id();
+            if (config('world.use_uuid')) {
+                $table->uuid('id')->primary();
+            } else {
+                $table->id();
+            }
+
             $table->string('name');
             $table->string('slug');
             $table->string('state_code', 10)->nullable();
@@ -58,12 +79,20 @@ return new class extends Migration
             $table->string('longitude', 20)->nullable();
             $table->string('wikiDataId', 20)->nullable();
 
-            $table->foreignId('state_id')->constrained('states');
-            $table->foreignId('country_id')->constrained('countries');
+            if (config('world.use_uuid')) {
+                $table->foreignUuid('country_id')->constrained('countries')->cascadeOnDelete()->cascadeOnUpdate();
+                $table->foreignUuid('state_id')->constrained('states')->cascadeOnDelete()->cascadeOnUpdate();
+            } else {
+                $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete()->cascadeOnUpdate();
+                $table->foreignId('state_id')->constrained('states')->cascadeOnDelete()->cascadeOnUpdate();
+            }
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('cities');
         Schema::dropIfExists('states');

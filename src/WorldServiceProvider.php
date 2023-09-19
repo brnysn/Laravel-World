@@ -16,6 +16,7 @@ class WorldServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-world')
+            ->hasConfigFile()
             ->hasMigration('create_world_tables');
     }
 }

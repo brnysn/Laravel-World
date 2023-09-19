@@ -9,3 +9,12 @@ phpstan.neon
 testbench.yaml
 vendor
 node_modules
+
+# MacOS generated files #
+######################
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+*.DS_Store
+.Trashes

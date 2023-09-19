@@ -2,12 +2,10 @@
 
 namespace Brnysn\World\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property mixed $id
  * @property string $name
  * @property string $country_code
  * @property string $country_name
@@ -17,23 +15,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $longitude
  * @property string $country_id
  */
-class State extends Model
+class State extends BaseModel
 {
-    public $timestamps = false;
-
-    protected $guarded = [];
-
-    protected $hidden = [];
-
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::addGlobalScope('orderByName', function ($query) {
-            $query->orderBy('name');
-        });
-    }
-
     public function cities(): HasMany
     {
         return $this->hasMany(City::class);
@@ -42,5 +25,13 @@ class State extends Model
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * Scopes
+     */
+    public function scopeByCountry($query, $countryId)
+    {
+        return $query->where('country_id', $countryId);
     }
 }

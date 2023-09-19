@@ -2,11 +2,9 @@
 
 namespace Brnysn\World\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property mixed $id
  * @property string $name
  * @property string iso2
  * @property string iso3
@@ -27,23 +25,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $emoji
  * @property string $emojiU
  */
-class Country extends Model
+class Country extends BaseModel
 {
-    public $timestamps = false;
-
-    protected $guarded = [];
-
-    protected $hidden = [];
-
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::addGlobalScope('orderByName', function ($query) {
-            $query->orderBy('name');
-        });
-    }
-
     public function states(): HasMany
     {
         return $this->hasMany(State::class);

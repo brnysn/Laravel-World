@@ -10,18 +10,19 @@ use Illuminate\Support\Str;
 
 class WorldSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $this->seedCountries();
         $this->seedStates();
         $this->seedCities();
     }
 
-    protected function seedCountries()
+    protected function seedCountries(): void
     {
         $this->command->info('Seeding Countries');
 
-        $csvFile = fopen(__DIR__.'/countries.csv', 'r');
+        $fileName = config('world.use_uuid') ? '/countries_uuid.csv' : '/countries.csv';
+        $csvFile = fopen(__DIR__.$fileName, 'r');
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
             if (! $firstline) {
@@ -44,8 +45,8 @@ class WorldSeeder extends Seeder
                     'timezones' => $data[14],
                     'latitude' => $data[15],
                     'longitude' => $data[16],
-                    'emoji' => $data[17],
-                    'emojiU' => $data[18],
+                    'emoji' => $data[17] ?? null,
+                    'emojiU' => $data[18] ?? null,
                 ]);
             }
             $firstline = false;
@@ -55,12 +56,12 @@ class WorldSeeder extends Seeder
         $this->command->info('👍 Countries Seeded Successfully');
     }
 
-    protected function seedStates()
+    protected function seedStates(): void
     {
         $this->command->info('Seeding States');
 
-        $csvFile = fopen(__DIR__.'/states.csv', 'r');
-
+        $fileName = config('world.use_uuid') ? '/states_uuid.csv' : '/states.csv';
+        $csvFile = fopen(__DIR__.$fileName, 'r');
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
             if (! $firstline) {
@@ -84,11 +85,12 @@ class WorldSeeder extends Seeder
         $this->command->info('👍 States Seeded Successfully');
     }
 
-    protected function seedCities()
+    protected function seedCities(): void
     {
         $this->command->info('Seeding Cities');
 
-        $csvFile = fopen(__DIR__.'/cities.csv', 'r');
+        $fileName = config('world.use_uuid') ? '/cities_uuid.csv' : '/cities.csv';
+        $csvFile = fopen(__DIR__.$fileName, 'r');
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
             if (! $firstline) {
